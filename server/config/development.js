@@ -4,7 +4,7 @@ module.exports = {
   seed: false,
   db: {
     //crear BD
-    url: 'mongodb://localhost/omgtask'
+    url: 'mongodb://localhost/omguser'
     //url: 'mongodb://localhost/funmath-dev'
   }
 };

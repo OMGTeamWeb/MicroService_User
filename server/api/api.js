@@ -4,5 +4,6 @@ var router = require('express').Router();
 // for all our resources
 
 router.use('/task', require('./task/taskRoutes'));
+router.use('/user', require('./user/userRoutes'));
 
 module.exports = router;
