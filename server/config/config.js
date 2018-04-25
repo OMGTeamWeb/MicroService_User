@@ -26,7 +26,7 @@ try {
   envConfig = envConfig || {};
 } catch(e) {
   envConfig = {};
-}
+} 
 
 // merge the two config files together
 // the envConfig file will overwrite properties
