@@ -36,11 +36,11 @@ exports.getUserData = function() {
 exports.verifyUser = function() {
   return function(req, res, next) {
     var name = req.body.name;
-    var password = req.body.password;
+    // var password = req.body.password;
 
     // if no name or password then send
-    if (!name || !password) {
-      res.status(400).send('Es necesario ingresar un usuario y una contraseña válida');
+    if (!name ) {
+      res.status(400).send('Es necesario ingresar un usuario e email válida');
       return;
     }
 
@@ -51,17 +51,19 @@ exports.verifyUser = function() {
         if (!user) {
           res.status(401).send('El usuario ingresado no existe');
         } else {
+          req.user = user;
+          next();
           // checking the passwords here
-          if (!user.authenticate(password)) {
-            res.status(401).send('La contraseña es incorrecta');
-          } else {
-            // if everything is good,
-            // then attach to req.user
-            // and call next so the controller
-            // can sign a token from the req.user._id
-            req.user = user;
-            next();
-          }
+          // if (!user.authenticate(password)) {
+          //   res.status(401).send('La contraseña es incorrecta');
+          // } else {
+          //   // if everything is good,
+          //   // then attach to req.user
+          //   // and call next so the controller
+          //   // can sign a token from the req.user._id
+          //   req.user = user;
+          //   next();
+          // }
         }
       }, function(err) {
         next(err);

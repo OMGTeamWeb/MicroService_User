@@ -50,7 +50,7 @@ exports.put = function(req, res, next) {
 
 exports.post = function(req, res, next) {
   var newUser = new User(req.body);
-
+  console.log(req.body);
   newUser.save(function(err, user) {
     if(err) { return next(err);}
 
@@ -88,9 +88,11 @@ exports.verifyUser = function() {
   return function(req, res, next) {
     var name = req.body.name;
     var email = req.body.email;
-    var password = req.body.password;
+    console.log(req.body.name);
 
-    if (!name || !email || !password) {
+    // var password = req.body.password;
+
+    if (!name || !email) {
       res.status(400).send('¡Hubo un error al añadir al User! Verifique que no exista ningún campo vacío.');
       return;
     }
@@ -117,10 +119,10 @@ exports.verifyUpdateUser = function() {
 
     var name = req.body.name;
     var email = req.body.email;
-    var password = req.body.password;
+    // var password = req.body.password;
 
 
-    if (!name || !password || email) {
+    if (!name || email) {
       res.status(400).send('¡Hubo un error al actualizar tu perfil! Verifique que no exista ningún campo vacío.');
       return;
     }
